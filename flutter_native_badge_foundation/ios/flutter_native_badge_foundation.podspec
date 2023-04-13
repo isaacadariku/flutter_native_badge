@@ -1,0 +1,1 @@
+../darwin/flutter_native_badge_foundation.podspec
