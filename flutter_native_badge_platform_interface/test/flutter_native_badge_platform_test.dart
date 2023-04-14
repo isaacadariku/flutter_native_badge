@@ -22,7 +22,7 @@ class MockFlutterNativeBadgePlatform
   }
 
   @override
-  Future<void> setBadgeRedDot() {
+  Future<void> showRedDot() {
     return Future.value(null);
   }
 }

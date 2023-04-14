@@ -20,7 +20,7 @@ abstract class FlutterNativeBadgePlatform extends PlatformInterface {
 
   /// The default instance of [FlutterNativeBadgePlatform] to use.
   ///
-  /// Defaults to [MethodChannelFlutterNativeBadgePlatformInterface].
+  /// Defaults to [MethodChannelFlutterNativeBadge].
   static FlutterNativeBadgePlatform get instance => _instance;
 
   /// Platform-specific implementations should set this with their own
@@ -40,8 +40,8 @@ abstract class FlutterNativeBadgePlatform extends PlatformInterface {
   ///
   Future<void> setBadgeCount(int count);
 
-  /// Set the badge of the app icon to red dot.
-  Future<void> setBadgeRedDot();
+  /// Shows a red dot on top of the app icon.
+  Future<void> showRedDot();
 
   /// Clears the badge count of the app icon.
   /// This will also hide the red dot on top of the app icon.

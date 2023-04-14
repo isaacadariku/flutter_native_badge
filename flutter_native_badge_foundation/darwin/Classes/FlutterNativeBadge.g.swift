@@ -37,8 +37,8 @@ private func nilOrValue<T>(_ value: Any?) -> T? {
 protocol FlutterNativeBadgeApi {
   func getBadgeCount() throws -> Int64
   func setBadgeCount(count: Int64) throws
-  func resetBadgeCount() throws
-  func setBadgeRedDot() throws
+  func clearBadgeCount() throws
+  func showRedDot() throws
 }
 
 /// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
@@ -74,31 +74,31 @@ class FlutterNativeBadgeApiSetup {
     } else {
       setBadgeCountChannel.setMessageHandler(nil)
     }
-    let resetBadgeCountChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.FlutterNativeBadgeApi.resetBadgeCount", binaryMessenger: binaryMessenger)
+    let clearBadgeCountChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.FlutterNativeBadgeApi.clearBadgeCount", binaryMessenger: binaryMessenger)
     if let api = api {
-      resetBadgeCountChannel.setMessageHandler { _, reply in
+      clearBadgeCountChannel.setMessageHandler { _, reply in
         do {
-          try api.resetBadgeCount()
+          try api.clearBadgeCount()
           reply(wrapResult(nil))
         } catch {
           reply(wrapError(error))
         }
       }
     } else {
-      resetBadgeCountChannel.setMessageHandler(nil)
+      clearBadgeCountChannel.setMessageHandler(nil)
     }
-    let setBadgeRedDotChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.FlutterNativeBadgeApi.setBadgeRedDot", binaryMessenger: binaryMessenger)
+    let showRedDotChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.FlutterNativeBadgeApi.showRedDot", binaryMessenger: binaryMessenger)
     if let api = api {
-      setBadgeRedDotChannel.setMessageHandler { _, reply in
+      showRedDotChannel.setMessageHandler { _, reply in
         do {
-          try api.setBadgeRedDot()
+          try api.showRedDot()
           reply(wrapResult(nil))
         } catch {
           reply(wrapError(error))
         }
       }
     } else {
-      setBadgeRedDotChannel.setMessageHandler(nil)
+      showRedDotChannel.setMessageHandler(nil)
     }
   }
 }

@@ -13,7 +13,7 @@ abstract class FlutterNativeBadgeApi {
 
   void setBadgeCount(int count);
 
-  void resetBadgeCount();
+  void clearBadgeCount();
 
-  void setBadgeRedDot();
+  void showRedDot();
 }

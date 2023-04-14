@@ -13,7 +13,9 @@ class MethodChannelFlutterNativeBadge extends FlutterNativeBadgePlatform {
 
   @override
   Future<int> getBadgeCount() async {
-    return await _kChannel.invokeMethod('getBadgeCount');
+    return await _kChannel
+        .invokeMethod<int>('getBadgeCount')
+        .then((value) => value ?? 0);
   }
 
   @override
@@ -22,7 +24,7 @@ class MethodChannelFlutterNativeBadge extends FlutterNativeBadgePlatform {
   }
 
   @override
-  Future<void> setBadgeRedDot() async {
+  Future<void> showRedDot() async {
     await _kChannel.invokeMethod('setBadgeRedDot');
   }
 }

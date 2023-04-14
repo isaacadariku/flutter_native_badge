@@ -67,9 +67,9 @@ class FlutterNativeBadgeApi {
     }
   }
 
-  Future<void> resetBadgeCount() async {
+  Future<void> clearBadgeCount() async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.FlutterNativeBadgeApi.resetBadgeCount', codec,
+        'dev.flutter.pigeon.FlutterNativeBadgeApi.clearBadgeCount', codec,
         binaryMessenger: _binaryMessenger);
     final List<Object?>? replyList =
         await channel.send(null) as List<Object?>?;
@@ -89,9 +89,9 @@ class FlutterNativeBadgeApi {
     }
   }
 
-  Future<void> setBadgeRedDot() async {
+  Future<void> showRedDot() async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.FlutterNativeBadgeApi.setBadgeRedDot', codec,
+        'dev.flutter.pigeon.FlutterNativeBadgeApi.showRedDot', codec,
         binaryMessenger: _binaryMessenger);
     final List<Object?>? replyList =
         await channel.send(null) as List<Object?>?;

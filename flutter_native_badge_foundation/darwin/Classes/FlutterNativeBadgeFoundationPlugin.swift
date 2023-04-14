@@ -40,7 +40,7 @@ public class FlutterNativeBadgePlugin: NSObject, FlutterPlugin, FlutterNativeBad
     #endif
   }
 
-  func resetBadgeCount() {
+  func clearBadgeCount() {
     #if os(iOS)
       UIApplication.shared.applicationIconBadgeNumber = 0
     #elseif os(macOS)
@@ -52,7 +52,7 @@ public class FlutterNativeBadgePlugin: NSObject, FlutterPlugin, FlutterNativeBad
     #endif
   }
 
-  func setBadgeRedDot() {
+  func showRedDot() {
     #if os(iOS)
       UIApplication.shared.applicationIconBadgeNumber = -1
     #elseif os(macOS)

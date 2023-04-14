@@ -1,10 +1,11 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_native_badge_platform_interface/flutter_native_badge_platform.dart';
 
 class FlutterNativeBadge {
   static Future<bool> isSupported() async {
-    if (Platform.isIOS || Platform.isMacOS) {
+    if (!kIsWeb && (Platform.isIOS || Platform.isMacOS)) {
       return true;
     } else {
       return false;
@@ -32,10 +33,10 @@ class FlutterNativeBadge {
     await FlutterNativeBadgePlatform.instance.clearBadgeCount();
   }
 
-  static Future<void> setBadgeRedDot() async {
+  static Future<void> showRedDot() async {
     if (!await isSupported()) {
       throw UnsupportedError('Platform not supported');
     }
-    await FlutterNativeBadgePlatform.instance.setBadgeRedDot();
+    await FlutterNativeBadgePlatform.instance.showRedDot();
   }
 }
