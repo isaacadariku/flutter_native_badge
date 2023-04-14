@@ -4,6 +4,7 @@ description: Flutter plugin for setting the badge count on native platforms.
 repository: https://github.com/isaacadariku/flutter_native_badge
 issue_tracker: https://github.com/isaacadariku/flutter_native_badge/issues
 version: 0.0.1
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 environment:
   sdk: ">=2.19.4 <4.0.0"
@@ -13,7 +14,10 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
-  shared_preferences_foundation: any
+  flutter_native_badge_foundation:
+    path: ../flutter_native_badge_foundation
+  flutter_native_badge_platform_interface:
+    path: ../flutter_native_badge_platform_interface
 
 dev_dependencies:
   flutter_test:

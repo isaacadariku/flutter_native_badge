@@ -1,14 +1,41 @@
-// You have generated a new plugin project without specifying the `--platforms`
-// flag. A plugin project with no platform support was generated. To add a
-// platform, run `flutter create -t plugin --platforms <platforms> .` under the
-// same directory. You can also find a detailed instruction on how to add
-// platforms in the `pubspec.yaml` at
-// https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
+import 'dart:io';
 
-import 'flutter_native_badge_platform_interface.dart';
+import 'package:flutter_native_badge_platform_interface/flutter_native_badge_platform.dart';
 
 class FlutterNativeBadge {
-  Future<String?> getPlatformVersion() {
-    return FlutterNativeBadgePlatform.instance.getPlatformVersion();
+  static Future<bool> isSupported() async {
+    if (Platform.isIOS || Platform.isMacOS) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  static Future<int> getBadgeCount() async {
+    if (!await isSupported()) {
+      throw UnsupportedError('Platform not supported');
+    }
+    return await FlutterNativeBadgePlatform.instance.getBadgeCount();
+  }
+
+  static Future<void> setBadgeCount(int count) async {
+    if (!await isSupported()) {
+      throw UnsupportedError('Platform not supported');
+    }
+    await FlutterNativeBadgePlatform.instance.setBadgeCount(count);
+  }
+
+  static Future<void> clearBadgeCount() async {
+    if (!await isSupported()) {
+      throw UnsupportedError('Platform not supported');
+    }
+    await FlutterNativeBadgePlatform.instance.clearBadgeCount();
+  }
+
+  static Future<void> setBadgeRedDot() async {
+    if (!await isSupported()) {
+      throw UnsupportedError('Platform not supported');
+    }
+    await FlutterNativeBadgePlatform.instance.setBadgeRedDot();
   }
 }
