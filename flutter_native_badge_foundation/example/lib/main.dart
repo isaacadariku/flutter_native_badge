@@ -58,10 +58,8 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: [
               const SizedBox(height: 20),
-              const Text('Native badge is not supported'),
-              const SizedBox(height: 20),
               Text('Badge count: $_badgeCount'),
-              const SizedBox(height: 20),
+              const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () async {
                   await _platform.setBadgeCount(_badgeCount + 1);

@@ -4,7 +4,7 @@ import 'package:pigeon/pigeon.dart';
   PigeonOptions(
     input: 'pigeons/flutter_native_badge_api.dart',
     dartOut: 'lib/flutter_native_badge_api.g.dart',
-    swiftOut: 'darwin/Classes/FlutterNativeBadge.g.swift',
+    swiftOut: 'ios/Classes/FlutterNativeBadge.g.swift',
   ),
 )
 @HostApi()

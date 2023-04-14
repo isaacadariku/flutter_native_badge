@@ -1,1 +1,24 @@
-../darwin/flutter_native_badge_foundation.podspec
+#
+# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
+# Run `pod lib lint flutter_native_badge_foundation.podspec` to validate before publishing.
+#
+Pod::Spec.new do |s|
+    s.name             = 'flutter_native_badge_foundation'
+    s.version          = '0.0.1'
+    s.summary          = 'iOS and macOS implementation of the flutter_native_badge plugin.'
+    s.description      = <<-DESC
+    Wraps the native APIs for iOS and macOS to set the badge count on the app icon.
+                         DESC
+    s.homepage         = 'https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_foundation'
+    s.license          = { :file => '../LICENSE' }
+    s.author           = { 'Eternity' => 'isaacadariku05@gmail.com' }
+    s.source           = { :path => '.' }
+    s.source_files = 'Classes/**/*'
+    s.ios.dependency 'Flutter'
+    s.ios.deployment_target = '9.0'
+    
+    # Flutter.framework does not contain a i386 slice.
+    s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
+    s.swift_version = '5.0'
+  end
+  
