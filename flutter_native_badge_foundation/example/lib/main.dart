@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_native_badge_foundation/flutter_native_badge_foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_native_badge_platform_interface/flutter_native_badge_platform.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,8 +16,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final String _platformVersion = 'Unknown';
-  final _flutterNativeBadgeFoundationPlugin = FlutterNativeBadgeFoundation();
+  final FlutterNativeBadgePlatform _platform =
+      FlutterNativeBadgePlatform.instance;
+  int _badgeCount = 0;
 
   @override
   void initState() {
@@ -25,7 +27,25 @@ class _MyAppState extends State<MyApp> {
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {}
+  Future<void> initPlatformState() async {
+    int badgeCount = 0;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    // We also handle the message potentially returning null.
+    try {
+      badgeCount = await _platform.getBadgeCount();
+    } on PlatformException {
+      badgeCount = 0;
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _badgeCount = badgeCount;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +55,51 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              const Text('Native badge is not supported'),
+              const SizedBox(height: 20),
+              Text('Badge count: $_badgeCount'),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () async {
+                  await _platform.setBadgeCount(_badgeCount + 1);
+                  _incrementCounter();
+                },
+                child: const Text('Increment'),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () async {
+                  await _platform.clearBadgeCount();
+                  _resetCounter();
+                },
+                child: const Text('Reset'),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () async {
+                  await _platform.showRedDot();
+                },
+                child: const Text('Show Red Dot'),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  Future<void> _incrementCounter() async {
+    setState(() {
+      _badgeCount++;
+    });
+  }
+
+  Future<void> _resetCounter() async {
+    setState(() {
+      _badgeCount = 0;
+    });
   }
 }

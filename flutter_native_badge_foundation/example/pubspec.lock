@@ -78,7 +78,7 @@ packages:
     source: path
     version: "0.0.1"
   flutter_native_badge_platform_interface:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "../../flutter_native_badge_platform_interface"
       relative: true

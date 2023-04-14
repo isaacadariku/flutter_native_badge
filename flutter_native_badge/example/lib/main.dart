@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_badge/flutter_native_badge.dart';
 
@@ -16,8 +16,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _flutterNativeBadgePlugin = FlutterNativeBadge();
+  bool _isSupported = false;
+  int _badgeCount = 0;
 
   @override
   void initState() {
@@ -27,14 +27,17 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
+    bool isSupported;
+    int badgeCount = 0;
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
-          await _flutterNativeBadgePlugin.getPlatformVersion() ?? 'Unknown platform version';
+      isSupported = await FlutterNativeBadge.isSupported();
+      if (isSupported) {
+        badgeCount = await FlutterNativeBadge.getBadgeCount();
+      }
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      isSupported = false;
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -43,7 +46,8 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _isSupported = isSupported;
+      _badgeCount = badgeCount;
     });
   }
 
@@ -55,9 +59,49 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              if (_isSupported)
+                const Text('Native badge is supported')
+              else
+                const Text('Native badge is not supported'),
+              const SizedBox(height: 20),
+              if (_isSupported) Text('Badge count: $_badgeCount'),
+              const SizedBox(height: 20),
+              if (_isSupported) ...[
+                ElevatedButton(
+                  onPressed: () async {
+                    await FlutterNativeBadge.setBadgeCount(_badgeCount + 1);
+                    _incrementCounter();
+                  },
+                  child: const Text('Increment'),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () async {
+                    await FlutterNativeBadge.clearBadgeCount();
+                    _resetCounter();
+                  },
+                  child: const Text('Reset'),
+                ),
+              ],
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  Future<void> _incrementCounter() async {
+    setState(() {
+      _badgeCount++;
+    });
+  }
+
+  Future<void> _resetCounter() async {
+    setState(() {
+      _badgeCount = 0;
+    });
   }
 }
