@@ -12,7 +12,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
+  flutter_native_badge_platform_interface:
+    path: ../flutter_native_badge_platform_interface
 
 dev_dependencies:
   flutter_test:
@@ -38,5 +39,9 @@ flutter:
     platforms:
       ios:
         pluginClass: FlutterNativeBadgeFoundationPlugin
+        dartPluginClass: FlutterNativeBadgeFoundation
+        sharedDarwinSource: true
       macos:
         pluginClass: FlutterNativeBadgeFoundationPlugin
+        dartPluginClass: FlutterNativeBadgeFoundation
+        sharedDarwinSource: true
