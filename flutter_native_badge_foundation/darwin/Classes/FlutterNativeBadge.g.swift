@@ -38,6 +38,7 @@ protocol FlutterNativeBadgeApi {
   func getBadgeCount() throws -> Int64
   func setBadgeCount(count: Int64) throws
   func resetBadgeCount() throws
+  func setBadgeRedDot() throws
 }
 
 /// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
@@ -85,6 +86,19 @@ class FlutterNativeBadgeApiSetup {
       }
     } else {
       resetBadgeCountChannel.setMessageHandler(nil)
+    }
+    let setBadgeRedDotChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.FlutterNativeBadgeApi.setBadgeRedDot", binaryMessenger: binaryMessenger)
+    if let api = api {
+      setBadgeRedDotChannel.setMessageHandler { _, reply in
+        do {
+          try api.setBadgeRedDot()
+          reply(wrapResult(nil))
+        } catch {
+          reply(wrapError(error))
+        }
+      }
+    } else {
+      setBadgeRedDotChannel.setMessageHandler(nil)
     }
   }
 }
