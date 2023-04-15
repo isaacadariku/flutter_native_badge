@@ -1,0 +1,2 @@
+build_pigeons:
+  - flutter pub run pigeon --input pigeons/flutter_native_badge_api.dart
