@@ -4,7 +4,6 @@ description: iOS and macOS implementation of the flutter_native_badge plugin.
 repository: https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_foundation
 issue_tracker: https://github.com/isaacadariku/flutter_native_badge/issues
 version: 1.0.0
-publish_to: "none" # Remove when publishing to pub.dev
 
 environment:
   sdk: ">=2.19.0 <4.0.0"
@@ -24,8 +23,7 @@ flutter:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_native_badge_platform_interface:
-    path: ../flutter_native_badge_platform_interface
+  flutter_native_badge_platform_interface: ^1.0.1
 
 dev_dependencies:
   flutter_test:
