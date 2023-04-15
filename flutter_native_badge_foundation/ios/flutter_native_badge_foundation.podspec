@@ -4,13 +4,13 @@
 #
 Pod::Spec.new do |s|
     s.name             = 'flutter_native_badge_foundation'
-    s.version          = '0.0.1'
+    s.version          = '1.0.1'
     s.summary          = 'iOS and macOS implementation of the flutter_native_badge plugin.'
     s.description      = <<-DESC
     Wraps the native APIs for iOS and macOS to set the badge count on the app icon.
                          DESC
     s.homepage         = 'https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_foundation'
-    s.license          = { type => 'MIT', :file => '../LICENSE' }
+    s.license          = { :type => 'MIT', :file => '../LICENSE' }
     s.author           = { 'Isaac Adariku' => 'isaacadariku05@gmail.com' }
     s.source           = { :http => 'https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_foundation' }
     s.source_files = 'Classes/**/*'

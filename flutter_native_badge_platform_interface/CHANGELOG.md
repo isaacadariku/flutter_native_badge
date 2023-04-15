@@ -1,3 +1,7 @@
+## 1.0.2 - 15th April 2023
+
+- Downgrade to dart 2.18.4
+
 ## 1.0.1 - 15th April 2023
 
 - Update README.md and pubspec.yaml
