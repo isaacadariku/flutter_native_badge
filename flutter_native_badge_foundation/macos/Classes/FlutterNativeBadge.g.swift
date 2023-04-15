@@ -35,6 +35,7 @@ private func nilOrValue<T>(_ value: Any?) -> T? {
 }
 /// Generated protocol from Pigeon that represents a handler of messages from Flutter.
 protocol FlutterNativeBadgeApi {
+  func requestPermission() throws
   func getBadgeCount() throws -> Int64
   func setBadgeCount(count: Int64) throws
   func clearBadgeCount() throws
@@ -46,6 +47,19 @@ class FlutterNativeBadgeApiSetup {
   /// The codec used by FlutterNativeBadgeApi.
   /// Sets up an instance of `FlutterNativeBadgeApi` to handle messages through the `binaryMessenger`.
   static func setUp(binaryMessenger: FlutterBinaryMessenger, api: FlutterNativeBadgeApi?) {
+    let requestPermissionChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.FlutterNativeBadgeApi.requestPermission", binaryMessenger: binaryMessenger)
+    if let api = api {
+      requestPermissionChannel.setMessageHandler { _, reply in
+        do {
+          try api.requestPermission()
+          reply(wrapResult(nil))
+        } catch {
+          reply(wrapError(error))
+        }
+      }
+    } else {
+      requestPermissionChannel.setMessageHandler(nil)
+    }
     let getBadgeCountChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.FlutterNativeBadgeApi.getBadgeCount", binaryMessenger: binaryMessenger)
     if let api = api {
       getBadgeCountChannel.setMessageHandler { _, reply in

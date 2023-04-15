@@ -9,6 +9,10 @@ public class FlutterNativeBadgePlugin: NSObject, FlutterPlugin, FlutterNativeBad
     FlutterNativeBadgeApiSetup.setUp(binaryMessenger: messenger, api: api)
   }
 
+  func requestPermission() {
+    // No-op
+  }
+
   func getBadgeCount() -> Int64 {
     let badgeCount = Int64(NSApplication.shared.dockTile.badgeLabel ?? "0") ?? 0
     return badgeCount
@@ -27,6 +31,9 @@ public class FlutterNativeBadgePlugin: NSObject, FlutterPlugin, FlutterNativeBad
   }
 
   func showRedDot() {
+    // Bounce the dock icon
+    NSApplication.shared.requestUserAttention(.criticalRequest)
+    // Show a red dot
     NSApplication.shared.dockTile.badgeLabel = "•"
   }
 }

@@ -47,4 +47,9 @@ abstract class FlutterNativeBadgePlatform extends PlatformInterface {
   /// This will also hide the red dot on top of the app icon.
   /// and set the badge count to 0.
   Future<void> clearBadgeCount();
+
+  /// Requests permission to show badges.
+  /// On iOS, this will show a permission dialog.
+  /// on Mac OS, this will do nothing.
+  Future<void> requestPermission();
 }

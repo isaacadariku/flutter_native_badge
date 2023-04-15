@@ -9,6 +9,21 @@ public class FlutterNativeBadgePlugin: NSObject, FlutterPlugin, FlutterNativeBad
     FlutterNativeBadgeApiSetup.setUp(binaryMessenger: messenger, api: api)
   }
 
+  func requestPermission() {
+    if #available(iOS 10.0, *) {
+      UNUserNotificationCenter.current().requestAuthorization(options: [.badge]) { (granted, error) in
+        if granted {
+          DispatchQueue.main.async {
+            UIApplication.shared.registerForRemoteNotifications()
+          }
+        }
+      }
+    } else {
+      UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge], categories: nil))
+      UIApplication.shared.registerForRemoteNotifications()
+    }
+  }
+
   func getBadgeCount() -> Int64 {
     let badgeCount = Int64(UIApplication.shared.applicationIconBadgeNumber)
     return badgeCount
@@ -23,6 +38,6 @@ public class FlutterNativeBadgePlugin: NSObject, FlutterPlugin, FlutterNativeBad
   }
 
   func showRedDot() {
-    UIApplication.shared.applicationIconBadgeNumber = -1
+    // No-op
   }
 }

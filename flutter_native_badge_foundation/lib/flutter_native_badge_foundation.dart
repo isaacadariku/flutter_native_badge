@@ -29,4 +29,9 @@ class FlutterNativeBadgeFoundation extends FlutterNativeBadgePlatform {
   Future<void> showRedDot() {
     return _api.showRedDot();
   }
+
+  @override
+  Future<void> requestPermission() {
+    return _api.requestPermission();
+  }
 }

@@ -25,6 +25,11 @@ class MockFlutterNativeBadgePlatform
   Future<void> showRedDot() {
     return Future.value(null);
   }
+
+  @override
+  Future<void> requestPermission() {
+    return Future.value(null);
+  }
 }
 
 void main() {

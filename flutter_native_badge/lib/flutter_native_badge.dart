@@ -12,31 +12,44 @@ class FlutterNativeBadge {
     }
   }
 
-  static Future<int> getBadgeCount() async {
-    if (!await isSupported()) {
-      throw UnsupportedError('Platform not supported');
-    }
+  static Future<int> getBadgeCount({bool requestPermission = false}) async {
+    checkPlatformAndRequestPermission(requestPermission);
+
     return await FlutterNativeBadgePlatform.instance.getBadgeCount();
   }
 
-  static Future<void> setBadgeCount(int count) async {
-    if (!await isSupported()) {
-      throw UnsupportedError('Platform not supported');
-    }
+  static Future<void> setBadgeCount(
+    int count, {
+    bool requestPermission = false,
+  }) async {
+    checkPlatformAndRequestPermission(requestPermission);
+
     await FlutterNativeBadgePlatform.instance.setBadgeCount(count);
   }
 
-  static Future<void> clearBadgeCount() async {
-    if (!await isSupported()) {
-      throw UnsupportedError('Platform not supported');
-    }
+  static Future<void> clearBadgeCount({bool requestPermission = false}) async {
+    checkPlatformAndRequestPermission(requestPermission);
+
     await FlutterNativeBadgePlatform.instance.clearBadgeCount();
   }
 
-  static Future<void> showRedDot() async {
-    if (!await isSupported()) {
-      throw UnsupportedError('Platform not supported');
-    }
+  static Future<void> showRedDot({bool requestPermission = false}) async {
+    checkPlatformAndRequestPermission(requestPermission);
+
     await FlutterNativeBadgePlatform.instance.showRedDot();
+  }
+}
+
+/// Check if the platform is supported and request permission if needed
+@visibleForTesting
+Future<void> checkPlatformAndRequestPermission(
+  bool requestPermission,
+) async {
+  if (!await FlutterNativeBadge.isSupported()) {
+    throw UnsupportedError('Platform not supported');
+  }
+
+  if (requestPermission) {
+    await FlutterNativeBadgePlatform.instance.requestPermission();
   }
 }

@@ -27,4 +27,9 @@ class MethodChannelFlutterNativeBadge extends FlutterNativeBadgePlatform {
   Future<void> showRedDot() async {
     await _kChannel.invokeMethod('setBadgeRedDot');
   }
+
+  @override
+  Future<void> requestPermission() async {
+    await _kChannel.invokeMethod('requestPermission');
+  }
 }

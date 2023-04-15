@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,6 +29,8 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
+    await _platform.requestPermission();
+
     int badgeCount = 0;
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
@@ -52,12 +55,12 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('FNB Plugin example app'),
         ),
         body: Center(
           child: Column(
             children: [
-              const SizedBox(height: 20),
+              const SizedBox(height: 40),
               Text('Badge count: $_badgeCount'),
               const SizedBox(height: 40),
               ElevatedButton(
@@ -68,20 +71,21 @@ class _MyAppState extends State<MyApp> {
                 child: const Text('Increment'),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () async {
-                  await _platform.clearBadgeCount();
-                  _resetCounter();
-                },
-                child: const Text('Reset'),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () async {
-                  await _platform.showRedDot();
-                },
-                child: const Text('Show Red Dot'),
-              ),
+              if (_badgeCount > 0)
+                ElevatedButton(
+                  onPressed: () async {
+                    await _platform.clearBadgeCount();
+                    _resetCounter();
+                  },
+                  child: const Text('Clear'),
+                ),
+              if (Platform.isMacOS)
+                ElevatedButton(
+                  onPressed: () async {
+                    await _platform.showRedDot();
+                  },
+                  child: const Text('Show Red Dot'),
+                ),
             ],
           ),
         ),
