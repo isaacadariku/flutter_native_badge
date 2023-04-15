@@ -1,18 +1,65 @@
 # flutter_native_badge
 
-A new Flutter plugin project.
+Wrapper for native badge APIs on iOS and macOS. It allows you to change the badge of your app icon, by setting the count, showing red dot, clearing the badge and getting the current badge count.
 
-## Getting Started
+It supports iOS and macOS for now. Other platforms are not supported yet.
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+## Usage
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Before using any of the methods, you should check if the platform is supported. If not, the methods will throw an unsupported exception.
 
-The plugin project was generated without specifying the `--platforms` flag, no platforms are currently supported.
-To add platforms, run `flutter create -t plugin --platforms <platforms> .` in this directory.
-You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
+Each method will check if the permission is granted if you set the `requestPermission` parameter to true. If not, it will not request the permission and the method may not work if the permission is not granted.
+
+### Import
+
+```dart
+import 'package:flutter_native_badge/flutter_native_badge.dart';
+```
+
+### Check if the platform is supported
+
+```dart
+bool isSupported = await FlutterNativeBadge.isSupported();
+```
+
+### Set badge count
+
+```dart
+FlutterNativeBadge.setBadgeCount(5);
+```
+
+### Show red dot
+
+```dart
+FlutterNativeBadge.showRedDot();
+```
+
+### Clear badge count
+
+```dart
+FlutterNativeBadge.clearBadgeCount();
+```
+
+### Get badge count
+
+```dart
+int badgeCount = await FlutterNativeBadge.getBadgeCount();
+```
+
+### Request permission
+
+Each method has a `requestPermission` parameter. If you set it to true, it will request the permission if it is not granted.
+
+```dart
+FlutterNativeBadge.setBadgeCount(5, requestPermission: true);
+
+FlutterNativeBadge.showRedDot(requestPermission: true);
+
+FlutterNativeBadge.clearBadgeCount(requestPermission: true);
+
+int badgeCount = await FlutterNativeBadge.getBadgeCount(requestPermission: true);
+```
+
+## Contributing
+
+Contributions are welcome! Please follow the Flutter & Dart standard and make a PR.

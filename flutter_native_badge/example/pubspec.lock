@@ -76,14 +76,14 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "1.0.0"
   flutter_native_badge_foundation:
     dependency: transitive
     description:
       path: "../../flutter_native_badge_foundation"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "1.0.0"
   flutter_native_badge_platform_interface:
     dependency: transitive
     description:
@@ -215,4 +215,4 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=2.19.4 <3.0.0"
-  flutter: ">=3.0.0"
+  flutter: ">=3.7.0"

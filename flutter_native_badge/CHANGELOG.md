@@ -1,3 +1,3 @@
-## 0.0.1
+## 1.0.0 - 15th April 2023
 
-* TODO: Describe initial release.
+- Initial Open source release of flutter_native_badge for iOS and macOS

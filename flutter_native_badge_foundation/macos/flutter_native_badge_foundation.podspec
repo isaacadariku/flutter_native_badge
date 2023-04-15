@@ -10,13 +10,15 @@ Pod::Spec.new do |s|
     Wraps the native APIs for iOS and macOS to set the badge count on the app icon.
                          DESC
     s.homepage         = 'https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_foundation'
-    s.license          = { :file => '../LICENSE' }
-    s.author           = { 'Eternity' => 'isaacadariku05@gmail.com' }
-    s.source           = { :path => '.' }
+    s.license          = { type => 'MIT', :file => '../LICENSE' }
+    s.author           = { 'Isaac Adariku' => 'isaacadariku05@gmail.com' }
+    s.source           = { :http => 'https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_foundation' }
     s.source_files = 'Classes/**/*'
     s.osx.dependency 'FlutterMacOS'
-    s.osx.deployment_target = '10.13'
-    s.ios.xcconfig = {
+    s.osx.deployment_target = '10.11'
+
+    s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
+    s.xcconfig = {
       'LIBRARY_SEARCH_PATHS' => '$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)/ $(SDKROOT)/usr/lib/swift',
       'LD_RUNPATH_SEARCH_PATHS' => '/usr/lib/swift',
     }

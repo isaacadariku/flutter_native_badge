@@ -1,3 +1,3 @@
-## 0.0.1
+## 1.0.0 - 15th April 2023
 
-* TODO: Describe initial release.
+- Initial open source release of flutter_native_badge_foundation
