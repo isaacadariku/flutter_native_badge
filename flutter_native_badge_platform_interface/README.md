@@ -1,18 +1,15 @@
 # flutter_native_badge_platform_interface
 
-A new Flutter plugin project.
+A common platform interface for the flutter_native_badge plugin.
 
-## Getting Started
+This interface allows platform-specific implementations of the flutter_native_badge plugin, as well as the plugin itself, to ensure they are supporting the same interface.
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+## Usage
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To implement a new platform-specific implementation of `flutter_native_badge`, extend [FlutterNativeBadgePlatform](https://github.com/isaacadariku/flutter_native_badge/blob/master/flutter_native_badge_platform_interface/lib/flutter_native_badge_platform.dart) with an implementation that performs the platform-specific behavior, and when you register your plugin, set the default `FlutterNativeBadgePlatform` by calling `FlutterNativeBadgePlatform.instance = MyPlatformFlutterNativeBadge()`.
 
-The plugin project was generated without specifying the `--platforms` flag, no platforms are currently supported.
-To add platforms, run `flutter create -t plugin --platforms <platforms> .` in this directory.
-You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
+## Note for maintainers
+
+Strongly prefer non-breaking changes (such as adding methods) to breaking changes (such as changing method signatures or removing methods).
+
+See the [Flutter Breaking changes](https://flutter.dev/go/platform-interface-breaking-changes) section of the [versioning guide](https://flutter.dev/docs/development/packages-and-plugins/versioning) for more information and why this is important.
