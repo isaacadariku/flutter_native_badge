@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
     s.name             = 'flutter_native_badge_foundation'
-    s.version          = '1.0.2'
+    s.version          = '1.0.3'
     s.summary          = 'iOS and macOS implementation of the flutter_native_badge plugin.'
     s.description      = <<-DESC
     Wraps the native APIs for iOS and macOS to set the badge count on the app icon.

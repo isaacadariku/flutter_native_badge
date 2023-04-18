@@ -1,3 +1,7 @@
+## 1.0.3 - 18th April 2023
+
+- Update dep
+
 ## 1.0.2 - 18th April 2023
 
 - Fix typo on readme

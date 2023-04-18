@@ -1,3 +1,7 @@
+## 1.0.3 - 18th April 2023
+
+- Downgrade sdk minimum to 2.18.2
+
 ## 1.0.2 - 15th April 2023
 
 - Downgrade to dart 2.18.4

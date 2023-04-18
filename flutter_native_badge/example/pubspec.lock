@@ -68,23 +68,23 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.0.3"
+    version: "1.0.4"
   flutter_native_badge_foundation:
     dependency: transitive
     description:
       name: flutter_native_badge_foundation
-      sha256: "68c86eb025285553c24816b85456c4d44d67315fa22c7348da5fc257c55fdfb4"
+      sha256: "9d160eb9cf0f381dfcce149e43d6514637e03ae22885c3c8eabcbff03e1b9844"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   flutter_native_badge_platform_interface:
     dependency: transitive
     description:
       name: flutter_native_badge_platform_interface
-      sha256: "95e123dc2ab8c431f4609bd2a3fcf817e46535d25a5a32b7545886f605a99b42"
+      sha256: c171d8bd8f884beec489ecd459178139f802c239efcfb30669babe355c07a5fc
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter

@@ -2,10 +2,10 @@ name: flutter_native_badge_platform_interface
 description: A common platform interface for the flutter_native_badge plugin.
 repository: https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_foundation
 issue_tracker: https://github.com/isaacadariku/flutter_native_badge/issues
-version: 1.0.2
+version: 1.0.3
 
 environment:
-  sdk: ">=2.18.4 <4.0.0"
+  sdk: ">=2.18.2 <4.0.0"
   flutter: ">=3.0.0"
 
 dependencies:

@@ -1,4 +1,8 @@
-## 1.0.3 - 15th April 2023
+## 1.0.4 - 18th April 2023
+
+- Update dependencies and increase version
+
+## 1.0.3 - 18th April 2023
 
 - Add preview gif to readme
 
