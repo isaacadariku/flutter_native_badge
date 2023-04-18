@@ -4,6 +4,23 @@ Wrapper for native badge APIs on iOS and macOS. It allows you to change the badg
 
 It supports iOS and macOS for now. Other platforms are not supported yet.
 
+## Preview
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th width="50%">Ios App</th>
+      <th width="50%">MacOs App</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="50%"><img src="https://user-images.githubusercontent.com/46024202/232333138-4b44a8d0-3121-434f-a863-2e74c8078d38.gif"/></td>
+      <td width="50%"><img src="https://user-images.githubusercontent.com/46024202/232332734-430e8296-ce3b-4a86-a25b-5c30c3738b7c.gif"/></td>
+    </tr>
+  </tbody>
+</table>
+
 ## Usage
 
 Before using any of the methods, you should check if the platform is supported. If not, the methods will throw an unsupported exception.
