@@ -1,3 +1,9 @@
+## 1.0.4 - 5th May 2024
+
+- Bump `flutter` version to 3.19.6
+- Bump `plugin_platform_interface` to 2.1.8
+- Add `derry` to manage scripts
+
 ## 1.0.3 - 18th April 2023
 
 - Downgrade sdk minimum to 2.18.2
