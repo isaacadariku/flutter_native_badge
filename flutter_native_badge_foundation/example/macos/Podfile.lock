@@ -1,5 +1,5 @@
 PODS:
-  - flutter_native_badge_foundation (0.0.1):
+  - flutter_native_badge_foundation (1.0.4):
     - FlutterMacOS
   - FlutterMacOS (1.0.0)
 
@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral
 
 SPEC CHECKSUMS:
-  flutter_native_badge_foundation: fe5581e8a656f9a187805adbb892c08944e8adcd
+  flutter_native_badge_foundation: 2cdc1ca0901f483ffff717b60216a1fa856166f8
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
 
 PODFILE CHECKSUM: 353c8bcc5d5b0994e508d035b5431cfe18c1dea7
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.14.3

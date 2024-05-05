@@ -1,3 +1,10 @@
+## 1.0.5 - 5th May 2024
+
+- [iOS] added privacy manifest
+- Bump `flutter` version to 3.19.6
+- Add `derry` to manage scripts
+- Update dependencies and increase version
+
 ## 1.0.4 - 18th April 2023
 
 - Update dependencies and increase version

@@ -1,10 +1,11 @@
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint flutter_native_badge_foundation.podspec` to validate before publishing.
-#
+require 'yaml'
+
+pubspec = YAML.load_file(File.join('..', 'pubspec.yaml'))
+library_version = pubspec['version'].gsub('+', '-')
+
 Pod::Spec.new do |s|
     s.name             = 'flutter_native_badge_foundation'
-    s.version          = '1.0.3'
+    s.version          = library_version
     s.summary          = 'iOS and macOS implementation of the flutter_native_badge plugin.'
     s.description      = <<-DESC
     Wraps the native APIs for iOS and macOS to set the badge count on the app icon.
