@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_native_badge_foundation (1.0.3):
+  - flutter_native_badge_foundation (1.0.4):
     - Flutter
 
 DEPENDENCIES:
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_native_badge_foundation: 4d4388bdb54f0aa6a140ac0c2596b428d8419bbe
+  flutter_native_badge_foundation: bec19b1db5ee7b322585906a19f79f71eee4d8bd
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 

@@ -73,10 +73,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_native_badge_foundation
-      sha256: "9d160eb9cf0f381dfcce149e43d6514637e03ae22885c3c8eabcbff03e1b9844"
+      sha256: cffdb3149e21458b92cb9b01d50c921e74643c7d78875836be3ebcffd9a56e8b
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.4"
   flutter_native_badge_platform_interface:
     dependency: transitive
     description:
