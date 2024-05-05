@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_native_badge_foundation (0.0.1):
+  - flutter_native_badge_foundation (1.0.3):
     - Flutter
 
 DEPENDENCIES:
@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_native_badge_foundation/ios"
 
 SPEC CHECKSUMS:
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  flutter_native_badge_foundation: f8df4f29f6d026523371948ae28c4b52f2d60ad7
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_native_badge_foundation: 4d4388bdb54f0aa6a140ac0c2596b428d8419bbe
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.14.3
