@@ -1,3 +1,8 @@
+## 1.0.5+dev
+
+- [iOS] Migrate from the deprecated badge API (#3). 
+  Now `getBadgeCount` in iOS isn't recommended because it depends on the deprecated API and could be unavailable in future iOS releases.
+
 ## 1.0.5 - 5th May 2024
 
 - [iOS] added privacy manifest

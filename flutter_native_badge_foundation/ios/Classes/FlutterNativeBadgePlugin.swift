@@ -25,16 +25,28 @@ public class FlutterNativeBadgePlugin: NSObject, FlutterPlugin, FlutterNativeBad
   }
 
   func getBadgeCount() -> Int64 {
+    // applicationIconBadgeNumber has been deprecated since iOS 17.
+    // There aren't any replacement so this function could be unavailable in future versions. 
     let badgeCount = Int64(UIApplication.shared.applicationIconBadgeNumber)
     return badgeCount
   }
 
   func setBadgeCount(count: Int64) {
-    UIApplication.shared.applicationIconBadgeNumber = Int(truncatingIfNeeded: count)
+    let count = Int(truncatingIfNeeded: count);
+
+    if #available(iOS 16.0, *) {
+      UNUserNotificationCenter.current().setBadgeCount(count)
+    } else {
+      UIApplication.shared.applicationIconBadgeNumber = count
+    }
   }
 
   func clearBadgeCount() {
-    UIApplication.shared.applicationIconBadgeNumber = 0
+    if #available(iOS 16.0, *) {
+      UNUserNotificationCenter.current().setBadgeCount(0)
+    } else {
+      UIApplication.shared.applicationIconBadgeNumber = 0
+    }
   }
 
   func showRedDot() {
