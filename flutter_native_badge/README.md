@@ -63,6 +63,10 @@ FlutterNativeBadge.clearBadgeCount();
 int badgeCount = await FlutterNativeBadge.getBadgeCount();
 ```
 
+For iOS: `getBadgeCount` depends on deprecated API and could be unavailable in future iOS releases!
+There aren't any replacements in iOS SDK.
+If you use `getBadgeCount` now, you had better to consider how to manage the count yourself.
+
 ### Request permission
 
 Each method has a `requestPermission` parameter. If you set it to true, it will request the permission if it is not granted.
