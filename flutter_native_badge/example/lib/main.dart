@@ -28,13 +28,13 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     bool isSupported;
-    int badgeCount = 0;
+
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
       isSupported = await FlutterNativeBadge.isSupported();
       if (isSupported) {
-        badgeCount = await FlutterNativeBadge.getBadgeCount();
+        await FlutterNativeBadge.clearBadgeCount();
       }
     } on PlatformException {
       isSupported = false;
@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
 
     setState(() {
       _isSupported = isSupported;
-      _badgeCount = badgeCount;
+      _badgeCount = 0;
     });
   }
 

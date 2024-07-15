@@ -32,12 +32,26 @@ class _MyAppState extends State<MyApp> {
     await _platform.requestPermission();
 
     int badgeCount = 0;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      badgeCount = await _platform.getBadgeCount();
-    } on PlatformException {
-      badgeCount = 0;
+
+    if (Platform.isIOS) {
+      // getBadgeCount is deprecated in iOS and the current count is unknown.
+      // Manage the count yourself by external datasources if you need to know it.
+      // This example just clears the badge on the launch.
+
+      // Platform messages may fail, so we use a try/catch PlatformException.
+      try {
+        await _platform.clearBadgeCount();
+      } on PlatformException {
+        // Do nothing
+      }
+    } else {
+      // Platform messages may fail, so we use a try/catch PlatformException.
+      // We also handle the message potentially returning null.
+      try {
+        badgeCount = await _platform.getBadgeCount();
+      } on PlatformException {
+        badgeCount = 0;
+      }
     }
 
     // If the widget was removed from the tree while the asynchronous platform
