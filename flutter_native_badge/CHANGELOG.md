@@ -1,6 +1,17 @@
+## 2.0.0
+
+- **BREAKING**: Bump minimum SDK to Dart >=3.11.0, Flutter >=3.41.0
+- **BREAKING**: `isSupported` is now a synchronous getter instead of `Future<bool>`
+- Deprecate `getBadgeCount()` — on iOS it uses a deprecated API (`applicationIconBadgeNumber`)
+- Add standalone `requestPermission()` method
+- Use `defaultTargetPlatform` instead of `dart:io` for platform checks (web-compatible)
+- Remove leaked `checkPlatformAndRequestPermission` top-level function
+- Upgrade Pigeon to v26 for regenerated native bindings
+- Add unit tests
+
 ## 1.0.5+dev
 
-- [iOS] Migrate from the deprecated badge API (#3). 
+- [iOS] Migrate from the deprecated badge API (#3).
   Now `getBadgeCount` in iOS isn't recommended because it depends on the deprecated API and could be unavailable in future iOS releases.
 
 ## 1.0.5 - 5th May 2024

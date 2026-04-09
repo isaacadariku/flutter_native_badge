@@ -6,6 +6,11 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockFlutterNativeBadgePlatform
     with MockPlatformInterfaceMixin
     implements FlutterNativeBadgePlatform {
+  int? lastSetCount;
+  bool clearCalled = false;
+  bool showRedDotCalled = false;
+  bool requestPermissionCalled = false;
+
   @override
   Future<int> getBadgeCount() {
     return Future.value(42);
@@ -13,21 +18,25 @@ class MockFlutterNativeBadgePlatform
 
   @override
   Future<void> setBadgeCount(int count) {
+    lastSetCount = count;
     return Future.value(null);
   }
 
   @override
   Future<void> clearBadgeCount() {
+    clearCalled = true;
     return Future.value(null);
   }
 
   @override
   Future<void> showRedDot() {
+    showRedDotCalled = true;
     return Future.value(null);
   }
 
   @override
   Future<void> requestPermission() {
+    requestPermissionCalled = true;
     return Future.value(null);
   }
 }
@@ -38,18 +47,22 @@ void main() {
   final FlutterNativeBadgePlatform initialPlatform =
       FlutterNativeBadgePlatform.instance;
 
-  void setupFlutterNativeBadge() {
-    MockFlutterNativeBadgePlatform mockPlatform =
-        MockFlutterNativeBadgePlatform();
+  late MockFlutterNativeBadgePlatform mockPlatform;
+
+  setUp(() {
+    mockPlatform = MockFlutterNativeBadgePlatform();
     FlutterNativeBadgePlatform.instance = mockPlatform;
-  }
+  });
+
+  tearDown(() {
+    FlutterNativeBadgePlatform.instance = initialPlatform;
+  });
 
   test('$MethodChannelFlutterNativeBadge is the default instance', () {
     expect(initialPlatform, isInstanceOf<MethodChannelFlutterNativeBadge>());
   });
 
   test('Can be overridden', () {
-    setupFlutterNativeBadge();
     expect(FlutterNativeBadgePlatform.instance,
         isInstanceOf<MockFlutterNativeBadgePlatform>());
   });
@@ -60,8 +73,27 @@ void main() {
         isInstanceOf<MethodChannelFlutterNativeBadge>());
   });
 
-  test('getBadgeCount', () async {
-    setupFlutterNativeBadge();
+  test('getBadgeCount returns expected value', () async {
     expect(await FlutterNativeBadgePlatform.instance.getBadgeCount(), 42);
+  });
+
+  test('setBadgeCount delegates to platform', () async {
+    await FlutterNativeBadgePlatform.instance.setBadgeCount(5);
+    expect(mockPlatform.lastSetCount, 5);
+  });
+
+  test('clearBadgeCount delegates to platform', () async {
+    await FlutterNativeBadgePlatform.instance.clearBadgeCount();
+    expect(mockPlatform.clearCalled, isTrue);
+  });
+
+  test('showRedDot delegates to platform', () async {
+    await FlutterNativeBadgePlatform.instance.showRedDot();
+    expect(mockPlatform.showRedDotCalled, isTrue);
+  });
+
+  test('requestPermission delegates to platform', () async {
+    await FlutterNativeBadgePlatform.instance.requestPermission();
+    expect(mockPlatform.requestPermissionCalled, isTrue);
   });
 }

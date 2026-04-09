@@ -27,17 +27,14 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    bool isSupported;
+    final isSupported = FlutterNativeBadge.isSupported;
 
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
     try {
-      isSupported = await FlutterNativeBadge.isSupported();
       if (isSupported) {
         await FlutterNativeBadge.clearBadgeCount();
       }
     } on PlatformException {
-      isSupported = false;
+      // ignore
     }
 
     // If the widget was removed from the tree while the asynchronous platform

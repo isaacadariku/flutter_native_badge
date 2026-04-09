@@ -68,9 +68,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('FNB Plugin example app'),
-        ),
+        appBar: AppBar(title: const Text('FNB Plugin example app')),
         body: Center(
           child: Column(
             children: [
@@ -93,6 +91,7 @@ class _MyAppState extends State<MyApp> {
                   },
                   child: const Text('Clear'),
                 ),
+              const SizedBox(height: 20),
               if (Platform.isMacOS)
                 ElevatedButton(
                   onPressed: () async {
