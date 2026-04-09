@@ -12,10 +12,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_native_badge_foundation:
-    path: ../flutter_native_badge_foundation
-  flutter_native_badge_platform_interface:
-    path: ../flutter_native_badge_platform_interface
+  flutter_native_badge_foundation: ^2.0.0
+  flutter_native_badge_platform_interface: ^2.0.0
 
 dev_dependencies:
   flutter_test:
