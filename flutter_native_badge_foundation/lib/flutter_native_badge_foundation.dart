@@ -2,7 +2,10 @@ import 'package:flutter_native_badge_foundation/flutter_native_badge_api.g.dart'
 import 'package:flutter_native_badge_platform_interface/flutter_native_badge_platform.dart';
 
 class FlutterNativeBadgeFoundation extends FlutterNativeBadgePlatform {
-  final FlutterNativeBadgeApi _api = FlutterNativeBadgeApi();
+  FlutterNativeBadgeFoundation({FlutterNativeBadgeApi? api})
+      : _api = api ?? FlutterNativeBadgeApi();
+
+  final FlutterNativeBadgeApi _api;
 
   /// Registers this class as the default instance of
   /// [FlutterNativeBadgePlatform].

@@ -9,8 +9,9 @@ public class FlutterNativeBadgePlugin: NSObject, FlutterPlugin, FlutterNativeBad
     FlutterNativeBadgeApiSetup.setUp(binaryMessenger: messenger, api: api)
   }
 
-  func requestPermission() {
-    // No-op
+  func requestPermission(completion: @escaping (Result<Void, Error>) -> Void) {
+    // No permission needed on macOS
+    completion(.success(()))
   }
 
   func getBadgeCount() -> Int64 {
@@ -23,11 +24,7 @@ public class FlutterNativeBadgePlugin: NSObject, FlutterPlugin, FlutterNativeBad
   }
 
   func clearBadgeCount() {
-    if #available(OSX 10.14, *) {
-      NSApplication.shared.dockTile.badgeLabel = nil
-    } else {
-      NSApplication.shared.dockTile.badgeLabel = "0"
-    }
+    NSApplication.shared.dockTile.badgeLabel = nil
   }
 
   func showRedDot() {
