@@ -16,15 +16,14 @@ Pod::Spec.new do |s|
     s.source           = { :http => 'https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_foundation' }
     s.source_files = 'Classes/**/*'
     s.ios.dependency 'Flutter'
-    s.ios.deployment_target = '9.0'
+    s.ios.deployment_target = '13.0'
     
-    # Flutter.framework does not contain a i386 slice.
-    s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
+    s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
     s.resource_bundles = {'flutter_native_badge_foundation_privacy' => ['Resources/PrivacyInfo.xcprivacy']}
     s.xcconfig = {
       'LIBRARY_SEARCH_PATHS' => '$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)/ $(SDKROOT)/usr/lib/swift',
       'LD_RUNPATH_SEARCH_PATHS' => '/usr/lib/swift',
     }
-    s.swift_version = '5.0'
+    s.swift_version = '5.9'
   end
   
