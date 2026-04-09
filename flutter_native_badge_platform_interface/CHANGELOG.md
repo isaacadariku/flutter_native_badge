@@ -1,4 +1,4 @@
-## 2.0.0
+## 2.0.0 - 9th April 2026
 
 - **BREAKING**: Bump minimum SDK to Dart >=3.11.0, Flutter >=3.41.0
 - Fix repository URL in pubspec.yaml
