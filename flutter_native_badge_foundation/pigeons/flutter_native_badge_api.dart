@@ -9,6 +9,7 @@ import 'package:pigeon/pigeon.dart';
 )
 @HostApi()
 abstract class FlutterNativeBadgeApi {
+  @async
   void requestPermission();
 
   int getBadgeCount();
