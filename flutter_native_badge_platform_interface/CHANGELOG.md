@@ -1,3 +1,9 @@
+## 2.0.0
+
+- **BREAKING**: Bump minimum SDK to Dart >=3.11.0, Flutter >=3.41.0
+- Fix repository URL in pubspec.yaml
+- Add missing unit tests for `setBadgeCount`, `clearBadgeCount`, `showRedDot`, `requestPermission`
+
 ## 1.0.4 - 5th May 2024
 
 - Bump `flutter` version to 3.19.6
