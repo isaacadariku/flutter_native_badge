@@ -3,7 +3,18 @@ description: Flutter plugin for setting the badge count on native platforms.
   Wraps the native APIs for iOS and macOS to set the badge count on the app icon.
 repository: https://github.com/isaacadariku/flutter_native_badge
 issue_tracker: https://github.com/isaacadariku/flutter_native_badge/issues
-version: 2.0.0
+version: 2.0.1
+
+topics:
+  - badge
+  - notification
+  - app-icon
+
+screenshots:
+  - description: "iOS badge count demo"
+    path: screenshots/ios_demo.gif
+  - description: "macOS badge count demo"
+    path: screenshots/macos_demo.gif
 
 environment:
   sdk: ">=3.11.0 <4.0.0"
@@ -16,6 +27,7 @@ dependencies:
   flutter_native_badge_platform_interface: ^2.0.0
 
 dev_dependencies:
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
   plugin_platform_interface: ^2.1.8

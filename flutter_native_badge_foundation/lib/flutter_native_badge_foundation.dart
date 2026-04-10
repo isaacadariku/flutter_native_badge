@@ -1,9 +1,16 @@
 import 'package:flutter_native_badge_foundation/flutter_native_badge_api.g.dart';
 import 'package:flutter_native_badge_platform_interface/flutter_native_badge_platform.dart';
 
+/// The iOS and macOS implementation of [FlutterNativeBadgePlatform].
+///
+/// This class implements the `flutter_native_badge` plugin functionality
+/// for iOS and macOS using Pigeon-generated bindings to the native APIs.
 class FlutterNativeBadgeFoundation extends FlutterNativeBadgePlatform {
+  /// Creates a new [FlutterNativeBadgeFoundation] instance.
+  ///
+  /// Optionally accepts a [FlutterNativeBadgeApi] for testing purposes.
   FlutterNativeBadgeFoundation({FlutterNativeBadgeApi? api})
-      : _api = api ?? FlutterNativeBadgeApi();
+    : _api = api ?? FlutterNativeBadgeApi();
 
   final FlutterNativeBadgeApi _api;
 

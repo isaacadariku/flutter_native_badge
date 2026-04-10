@@ -1,16 +1,40 @@
 # flutter_native_badge
 
-Wrapper for native badge APIs on iOS and macOS. It allows you to change the badge of your app icon, by setting the count, showing red dot, clearing the badge and getting the current badge count.
+[![pub package](https://img.shields.io/pub/v/flutter_native_badge.svg)](https://pub.dev/packages/flutter_native_badge)
+[![pub points](https://img.shields.io/pub/points/flutter_native_badge)](https://pub.dev/packages/flutter_native_badge/score)
+[![likes](https://img.shields.io/pub/likes/flutter_native_badge)](https://pub.dev/packages/flutter_native_badge)
+[![popularity](https://img.shields.io/pub/popularity/flutter_native_badge)](https://pub.dev/packages/flutter_native_badge)
 
-It supports iOS and macOS for now. Other platforms are not supported yet.
+A Flutter plugin that wraps native badge APIs on iOS and macOS. Set badge counts, show a red dot indicator, clear badges, and manage notification permissions — all through a simple Dart API.
+
+## Features
+
+- **Set badge count** — Display a numeric badge on your app icon
+- **Show red dot** — Show a dot indicator without a number (macOS dock)
+- **Clear badge** — Remove the badge from your app icon
+- **Get badge count** — Read the current badge value (iOS only, deprecated API)
+- **Request permission** — Handle iOS notification permission prompts
+- **Platform check** — Safely check if the current platform supports badges
+
+## Platform Support
+
+| Feature               |      iOS      |   macOS    |
+| --------------------- | :-----------: | :--------: |
+| `setBadgeCount()`     |      ✅       |     ✅     |
+| `clearBadgeCount()`   |      ✅       |     ✅     |
+| `showRedDot()`        |      ✅       |     ✅     |
+| `getBadgeCount()`     | ⚠️ Deprecated |     ✅     |
+| `requestPermission()` |      ✅       | ✅ (no-op) |
+
+> **Android support** is planned for a future release.
 
 ## Preview
 
 <table width="100%">
   <thead>
     <tr>
-      <th width="50%">Ios App</th>
-      <th width="50%">MacOs App</th>
+      <th width="50%">iOS</th>
+      <th width="50%">macOS</th>
     </tr>
   </thead>
   <tbody>
@@ -21,41 +45,72 @@ It supports iOS and macOS for now. Other platforms are not supported yet.
   </tbody>
 </table>
 
-## Usage
+## Installation
 
-Before using any of the methods, you should check if the platform is supported. If not, the methods will throw an unsupported exception.
+Add `flutter_native_badge` to your `pubspec.yaml`:
 
-Each method will check if the permission is granted if you set the `requestPermission` parameter to true. If not, it will not request the permission and the method may not work if the permission is not granted.
+```yaml
+dependencies:
+  flutter_native_badge: ^2.0.0
+```
 
-### Import
+Then run:
+
+```sh
+flutter pub get
+```
+
+## Quick Start
 
 ```dart
 import 'package:flutter_native_badge/flutter_native_badge.dart';
+
+// Check platform support first
+if (FlutterNativeBadge.isSupported) {
+  // Request permission (shows dialog on iOS)
+  await FlutterNativeBadge.requestPermission();
+
+  // Set badge count
+  await FlutterNativeBadge.setBadgeCount(5);
+
+  // Clear badge
+  await FlutterNativeBadge.clearBadgeCount();
+}
 ```
+
+## API Reference
 
 ### Check if the platform is supported
 
 ```dart
-bool isSupported = await FlutterNativeBadge.isSupported();
+bool isSupported = FlutterNativeBadge.isSupported;
 ```
+
+Returns `true` on iOS and macOS, `false` on all other platforms. Use this before calling any other method to avoid `UnsupportedError`.
 
 ### Set badge count
 
 ```dart
-FlutterNativeBadge.setBadgeCount(5);
+await FlutterNativeBadge.setBadgeCount(5);
 ```
+
+On iOS 16+, uses the modern `UNUserNotificationCenter.setBadgeCount` API. On earlier iOS versions, falls back to `applicationIconBadgeNumber`.
 
 ### Show red dot
 
 ```dart
-FlutterNativeBadge.showRedDot();
+await FlutterNativeBadge.showRedDot();
 ```
+
+Shows a red dot indicator on the app icon without displaying a number. Useful for indicating new content.
 
 ### Clear badge count
 
 ```dart
-FlutterNativeBadge.clearBadgeCount();
+await FlutterNativeBadge.clearBadgeCount();
 ```
+
+Removes the badge from the app icon and resets the count to 0.
 
 ### Get badge count
 
@@ -63,24 +118,71 @@ FlutterNativeBadge.clearBadgeCount();
 int badgeCount = await FlutterNativeBadge.getBadgeCount();
 ```
 
-For iOS: `getBadgeCount` depends on deprecated API and could be unavailable in future iOS releases!
-There aren't any replacements in iOS SDK.
-If you use `getBadgeCount` now, you had better to consider how to manage the count yourself.
+> **⚠️ Deprecated on iOS:** This uses the `applicationIconBadgeNumber` API which Apple has deprecated. There is no replacement in the iOS SDK. Consider managing the count yourself via your backend or local storage.
 
 ### Request permission
 
-Each method has a `requestPermission` parameter. If you set it to true, it will request the permission if it is not granted.
+```dart
+await FlutterNativeBadge.requestPermission();
+```
+
+On iOS, presents the system notification permission dialog. On macOS, this is a no-op.
+
+You can also pass `requestPermission: true` to any method to request permission inline:
 
 ```dart
-FlutterNativeBadge.setBadgeCount(5, requestPermission: true);
-
-FlutterNativeBadge.showRedDot(requestPermission: true);
-
-FlutterNativeBadge.clearBadgeCount(requestPermission: true);
-
-int badgeCount = await FlutterNativeBadge.getBadgeCount(requestPermission: true);
+await FlutterNativeBadge.setBadgeCount(5, requestPermission: true);
+await FlutterNativeBadge.showRedDot(requestPermission: true);
+await FlutterNativeBadge.clearBadgeCount(requestPermission: true);
 ```
+
+## Permissions
+
+### iOS
+
+Badge counts on iOS require notification permissions. Call `requestPermission()` before setting a badge, or pass `requestPermission: true` to individual methods.
+
+Add the following to your `Info.plist` if you haven't already configured push notifications:
+
+```xml
+<key>UIBackgroundModes</key>
+<array>
+    <string>remote-notification</string>
+</array>
+```
+
+### macOS
+
+No special permissions are required. Badge APIs work out of the box on macOS.
+
+## Migrating from flutter_app_badger
+
+[`flutter_app_badger`](https://pub.dev/packages/flutter_app_badger) has been **discontinued**. Here's how to migrate:
+
+```dart
+// Before (flutter_app_badger)
+FlutterAppBadger.updateBadgeCount(5);
+FlutterAppBadger.removeBadge();
+FlutterAppBadger.isAppBadgeSupported();
+
+// After (flutter_native_badge)
+await FlutterNativeBadge.setBadgeCount(5);
+await FlutterNativeBadge.clearBadgeCount();
+FlutterNativeBadge.isSupported; // synchronous getter
+```
+
+**Key differences:**
+
+- `flutter_native_badge` uses a federated plugin architecture for better maintainability
+- Built-in permission handling with `requestPermission` parameter
+- `showRedDot()` for dot-only indicators on macOS
+- Uses modern iOS 16+ badge APIs with automatic fallback
+- Type-safe Pigeon bindings instead of raw method channels
 
 ## Contributing
 
-Contributions are welcome! Please follow the Flutter & Dart standard and make a PR.
+Contributions are welcome! Please follow the [Flutter style guide](https://github.com/flutter/flutter/wiki/Style-guide-for-Flutter-repo) and submit a PR.
+
+## License
+
+MIT — see [LICENSE](LICENSE) for details.

@@ -3,7 +3,12 @@ description: iOS and macOS implementation of the flutter_native_badge plugin.
   Wraps the native APIs for iOS and macOS to set the badge count on the app icon.
 repository: https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_foundation
 issue_tracker: https://github.com/isaacadariku/flutter_native_badge/issues
-version: 2.0.0
+version: 2.0.1
+
+topics:
+  - badge
+  - notification
+  - app-icon
 
 environment:
   sdk: ">=3.11.0 <4.0.0"
@@ -27,6 +32,7 @@ dependencies:
   meta: ^1.11.0
 
 dev_dependencies:
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
   pigeon: ^26.0.0

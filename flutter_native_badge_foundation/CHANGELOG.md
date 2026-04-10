@@ -1,3 +1,11 @@
+## 2.0.1 - 10th April 2026
+
+- Add dartdoc to `FlutterNativeBadgeFoundation` class
+- Add `analysis_options.yaml` with `flutter_lints`
+- Add `topics` to pubspec.yaml
+- Improve README with implementation details
+- Fix example widget test
+
 ## 2.0.0 - 9th April 2026
 
 - **BREAKING**: Bump minimum SDK to Dart >=3.11.0, Flutter >=3.41.0

@@ -1,3 +1,11 @@
+## 2.0.1 - 10th April 2026
+
+- Add comprehensive dartdoc to all public APIs
+- Add `analysis_options.yaml` with `flutter_lints`
+- Add `topics` and `screenshots` to pubspec.yaml
+- Rewrite README with platform support table, installation guide, migration guide from `flutter_app_badger`, and full API reference
+- Fix example widget test
+
 ## 2.0.0 - 9th April 2026
 
 - **BREAKING**: Bump minimum SDK to Dart >=3.11.0, Flutter >=3.41.0
