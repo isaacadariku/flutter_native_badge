@@ -33,23 +33,10 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - name: Use the local packages
-        if: matrix.package == 'flutter_native_badge'
-        run: |
-          cat > pubspec_overrides.yaml <<'YAML'
-          dependency_overrides:
-            flutter_native_badge_android:
-              path: ../flutter_native_badge_android
-            flutter_native_badge_foundation:
-              path: ../flutter_native_badge_foundation
-            flutter_native_badge_platform_interface:
-              path: ../flutter_native_badge_platform_interface
-          YAML
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
       - run: flutter pub publish --dry-run
-        if: matrix.package != 'flutter_native_badge'
 
   android:
     name: Android

@@ -1,0 +1,16 @@
+name: flutter_native_badge_workspace
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+# Run `flutter pub get` here to resolve every package against the local
+# copies of each other. See https://dart.dev/tools/pub/workspaces
+workspace:
+  - flutter_native_badge
+  - flutter_native_badge/example
+  - flutter_native_badge_android
+  - flutter_native_badge_android/example
+  - flutter_native_badge_foundation
+  - flutter_native_badge_foundation/example
+  - flutter_native_badge_platform_interface
