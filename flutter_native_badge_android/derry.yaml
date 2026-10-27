@@ -1,4 +1,9 @@
-publish_check: flutter pub publish --dry-run
-publish: flutter pub publish
-build_pigeons: >
-  dart run pigeon --input pigeons/flutter_native_badge_api.dart
+build_pigeons:
+  - dart run pigeon --input pigeons/flutter_native_badge_api.dart
+  - dart format lib/flutter_native_badge_api.g.dart
+
+publish_check:
+  - flutter pub publish --dry-run
+
+publish:
+  - flutter pub publish

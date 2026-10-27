@@ -25,38 +25,42 @@ void main() {
           'dev.flutter.pigeon.flutter_native_badge_foundation.FlutterNativeBadgeApi';
 
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-          .setMockMessageHandler('$channelPrefix.requestPermission',
-              (message) async {
-        log.add('requestPermission');
-        return const StandardMessageCodec().encodeMessage(<Object?>[null]);
-      });
+          .setMockMessageHandler('$channelPrefix.requestPermission', (
+            message,
+          ) async {
+            log.add('requestPermission');
+            return const StandardMessageCodec().encodeMessage(<Object?>[null]);
+          });
 
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-          .setMockMessageHandler('$channelPrefix.getBadgeCount',
-              (message) async {
-        log.add('getBadgeCount');
-        return const StandardMessageCodec().encodeMessage(<Object?>[7]);
-      });
+          .setMockMessageHandler('$channelPrefix.getBadgeCount', (
+            message,
+          ) async {
+            log.add('getBadgeCount');
+            return const StandardMessageCodec().encodeMessage(<Object?>[7]);
+          });
 
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-          .setMockMessageHandler('$channelPrefix.setBadgeCount',
-              (message) async {
-        log.add('setBadgeCount');
-        return const StandardMessageCodec().encodeMessage(<Object?>[null]);
-      });
+          .setMockMessageHandler('$channelPrefix.setBadgeCount', (
+            message,
+          ) async {
+            log.add('setBadgeCount');
+            return const StandardMessageCodec().encodeMessage(<Object?>[null]);
+          });
 
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-          .setMockMessageHandler('$channelPrefix.clearBadgeCount',
-              (message) async {
-        log.add('clearBadgeCount');
-        return const StandardMessageCodec().encodeMessage(<Object?>[null]);
-      });
+          .setMockMessageHandler('$channelPrefix.clearBadgeCount', (
+            message,
+          ) async {
+            log.add('clearBadgeCount');
+            return const StandardMessageCodec().encodeMessage(<Object?>[null]);
+          });
 
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
           .setMockMessageHandler('$channelPrefix.showRedDot', (message) async {
-        log.add('showRedDot');
-        return const StandardMessageCodec().encodeMessage(<Object?>[null]);
-      });
+            log.add('showRedDot');
+            return const StandardMessageCodec().encodeMessage(<Object?>[null]);
+          });
 
       foundation = FlutterNativeBadgeFoundation();
     });

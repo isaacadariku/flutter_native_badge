@@ -1,5 +1,6 @@
 build_pigeons:
   - dart run pigeon --input pigeons/flutter_native_badge_api.dart
+  - dart format lib/flutter_native_badge_api.g.dart
   - cp ios/flutter_native_badge_foundation/Sources/flutter_native_badge_foundation/FlutterNativeBadge.g.swift macos/flutter_native_badge_foundation/Sources/flutter_native_badge_foundation/FlutterNativeBadge.g.swift
 
 publish_check:
