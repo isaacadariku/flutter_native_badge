@@ -63,14 +63,18 @@ void main() {
   });
 
   test('Can be overridden', () {
-    expect(FlutterNativeBadgePlatform.instance,
-        isInstanceOf<MockFlutterNativeBadgePlatform>());
+    expect(
+      FlutterNativeBadgePlatform.instance,
+      isInstanceOf<MockFlutterNativeBadgePlatform>(),
+    );
   });
 
   test('Can be reset', () {
     FlutterNativeBadgePlatform.instance = initialPlatform;
-    expect(FlutterNativeBadgePlatform.instance,
-        isInstanceOf<MethodChannelFlutterNativeBadge>());
+    expect(
+      FlutterNativeBadgePlatform.instance,
+      isInstanceOf<MethodChannelFlutterNativeBadge>(),
+    );
   });
 
   test('getBadgeCount returns expected value', () async {

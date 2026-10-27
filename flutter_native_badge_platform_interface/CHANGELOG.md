@@ -1,3 +1,9 @@
+## 2.0.2 - 27th October 2026
+
+- Fix the `repository` URL in pubspec.yaml
+- Clarify the API docs
+- Format the code with `dart format`
+
 ## 2.0.1 - 10th April 2026
 
 - Add `analysis_options.yaml` with `flutter_lints`

@@ -1,8 +1,8 @@
 name: flutter_native_badge_platform_interface
 description: A common platform interface for the flutter_native_badge plugin.
-repository: https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_platform_interface
+repository: https://github.com/isaacadariku/flutter_native_badge/tree/master/flutter_native_badge_platform_interface
 issue_tracker: https://github.com/isaacadariku/flutter_native_badge/issues
-version: 2.0.1
+version: 2.0.2
 
 topics:
   - badge

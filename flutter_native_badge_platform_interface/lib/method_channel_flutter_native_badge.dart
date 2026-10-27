@@ -1,8 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_native_badge_platform_interface/flutter_native_badge_platform.dart';
 
-const MethodChannel _kChannel =
-    MethodChannel('plugins.flutter.io/flutter_native_badge');
+const MethodChannel _kChannel = MethodChannel(
+  'plugins.flutter.io/flutter_native_badge',
+);
 
 /// An implementation of [FlutterNativeBadgePlatform] that uses method channels.
 class MethodChannelFlutterNativeBadge extends FlutterNativeBadgePlatform {
