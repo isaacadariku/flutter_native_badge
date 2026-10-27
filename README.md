@@ -1,7 +1,50 @@
 # flutter_native_badge
 
-This repo is a companion to the [flutter_native_badge](https://pub.dev/packages/flutter_native_badge) plugin. It contains the iOS and macOS implementations of the plugin at the time of the plugin's open source release.
+[![CI](https://github.com/isaacadariku/flutter_native_badge/actions/workflows/ci.yml/badge.svg)](https://github.com/isaacadariku/flutter_native_badge/actions/workflows/ci.yml)
 
-### License
+A Flutter plugin for setting the app icon badge count on iOS, macOS, and Android.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE.md).
+**To use the plugin, see the [`flutter_native_badge`](flutter_native_badge/) package and its [pub.dev page](https://pub.dev/packages/flutter_native_badge).**
+
+## Packages
+
+This is a [federated plugin](https://docs.flutter.dev/packages-and-plugins/developing-packages#federated-plugins). This repo contains:
+
+| Package | Description | pub.dev |
+| --- | --- | --- |
+| [`flutter_native_badge`](flutter_native_badge/) | The app-facing package. Add this one to your app. | [![pub](https://img.shields.io/pub/v/flutter_native_badge.svg)](https://pub.dev/packages/flutter_native_badge) |
+| [`flutter_native_badge_platform_interface`](flutter_native_badge_platform_interface/) | The common interface that every platform implementation implements. | [![pub](https://img.shields.io/pub/v/flutter_native_badge_platform_interface.svg)](https://pub.dev/packages/flutter_native_badge_platform_interface) |
+| [`flutter_native_badge_foundation`](flutter_native_badge_foundation/) | The iOS and macOS implementation. | [![pub](https://img.shields.io/pub/v/flutter_native_badge_foundation.svg)](https://pub.dev/packages/flutter_native_badge_foundation) |
+| [`flutter_native_badge_android`](flutter_native_badge_android/) | The Android implementation. | [![pub](https://img.shields.io/pub/v/flutter_native_badge_android.svg)](https://pub.dev/packages/flutter_native_badge_android) |
+
+## Contributing
+
+Please [open an issue](https://github.com/isaacadariku/flutter_native_badge/issues) to discuss a change before submitting a pull request.
+
+To work on the packages locally, link them to each other so that unpublished changes are used. From the repo root:
+
+```sh
+cat > flutter_native_badge/pubspec_overrides.yaml <<'YAML'
+dependency_overrides:
+  flutter_native_badge_android:
+    path: ../flutter_native_badge_android
+  flutter_native_badge_foundation:
+    path: ../flutter_native_badge_foundation
+  flutter_native_badge_platform_interface:
+    path: ../flutter_native_badge_platform_interface
+YAML
+```
+
+The example apps already point at the local packages.
+
+Run the integration tests on a device or simulator from `flutter_native_badge/example`:
+
+```sh
+flutter test integration_test -d <device>
+```
+
+On iOS, the tests wait for the notification permission dialog, so allow it when it appears.
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE).
