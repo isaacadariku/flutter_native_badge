@@ -1,0 +1,30 @@
+name: Publish
+
+# Publishes a package to pub.dev when a tag like `flutter_native_badge-v2.1.0` is pushed.
+# Each package must have automated publishing enabled on pub.dev with the tag
+# pattern `<package>-v{{version}}`.
+on:
+  push:
+    tags:
+      - "flutter_native_badge*-v[0-9]+.[0-9]+.[0-9]+*"
+
+jobs:
+  publish:
+    name: Publish ${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    environment: pub.dev
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Find the package
+        run: echo "PACKAGE=${GITHUB_REF_NAME%-v*}" >> "$GITHUB_ENV"
+      - name: Publish
+        working-directory: ${{ env.PACKAGE }}
+        run: |
+          flutter pub get
+          flutter pub publish --force
