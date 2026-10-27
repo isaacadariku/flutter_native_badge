@@ -20,7 +20,8 @@ public class FlutterNativeBadgePlugin: NSObject, FlutterPlugin, FlutterNativeBad
   }
 
   func setBadgeCount(count: Int64) {
-    NSApplication.shared.dockTile.badgeLabel = String(count)
+    // A nil label hides the badge; "0" would be shown as a literal zero.
+    NSApplication.shared.dockTile.badgeLabel = count > 0 ? String(count) : nil
   }
 
   func clearBadgeCount() {

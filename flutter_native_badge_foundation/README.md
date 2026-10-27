@@ -16,3 +16,4 @@ However, if you import this package to use any of its APIs directly, you should 
 - iOS: Uses `UNUserNotificationCenter` for modern badge APIs (iOS 16+) with `applicationIconBadgeNumber` fallback
 - macOS: Uses `NSApplication.dockTile.badgeLabel` for badge counts and `NSDockTile` for red dot indicators
 - Includes `PrivacyInfo.xcprivacy` for Apple's privacy manifest requirements
+- Supports both [Swift Package Manager](https://docs.flutter.dev/packages-and-plugins/swift-package-manager/for-plugin-authors) and CocoaPods
