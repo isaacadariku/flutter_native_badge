@@ -1,3 +1,15 @@
+## 2.1.0 - 27th October 2026
+
+- **NEW**: Android support via [`flutter_native_badge_android`](https://pub.dev/packages/flutter_native_badge_android) ([#7](https://github.com/isaacadariku/flutter_native_badge/issues/7))
+  - Uses the launcher badge API on Huawei and Honor, and a silent notification carrying the count on all other launchers (Android 8.0+)
+  - `requestPermission()` requests `POST_NOTIFICATIONS` on Android 13+ (API 33)
+  - `isSupported` now returns `true` on Android
+- **NEW**: Swift Package Manager support for iOS and macOS (via `flutter_native_badge_foundation` 2.1.0)
+- Fix `setBadgeCount(0)` showing a literal "0" on the macOS dock icon instead of clearing it
+- Bump minimum Flutter version to 3.44.0
+- Correct the docs for `showRedDot()` on iOS (no-op) and remove the unnecessary `UIBackgroundModes` setup step
+- Add Android, iOS and macOS platform projects and integration tests to the example app
+
 ## 2.0.1 - 10th April 2026
 
 - Add comprehensive dartdoc to all public APIs

@@ -16,70 +16,84 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isSupported = false;
+  final bool _isSupported = FlutterNativeBadge.isSupported;
   int _badgeCount = 0;
+  String? _error;
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    if (_isSupported) {
+      _run(() async {
+        await FlutterNativeBadge.requestPermission();
+        await FlutterNativeBadge.clearBadgeCount();
+        _badgeCount = 0;
+      });
+    }
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    final isSupported = FlutterNativeBadge.isSupported;
-
+  // Platform messages are asynchronous, so report failures in the UI instead
+  // of letting them escape.
+  Future<void> _run(Future<void> Function() action) async {
     try {
-      if (isSupported) {
-        await FlutterNativeBadge.clearBadgeCount();
-      }
-    } on PlatformException {
-      // ignore
+      await action();
+      _error = null;
+    } on PlatformException catch (e) {
+      _error = e.message ?? e.code;
     }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _isSupported = isSupported;
-      _badgeCount = 0;
-    });
+    if (mounted) setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
+        appBar: AppBar(title: const Text('Plugin example app')),
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 20),
-              if (_isSupported)
-                const Text('Native badge is supported')
-              else
-                const Text('Native badge is not supported'),
-              const SizedBox(height: 20),
-              if (_isSupported) Text('Badge count: $_badgeCount'),
-              const SizedBox(height: 20),
+              Text(
+                _isSupported
+                    ? 'Native badge is supported'
+                    : 'Native badge is not supported',
+              ),
               if (_isSupported) ...[
+                const SizedBox(height: 20),
+                Text(
+                  'Badge count: $_badgeCount',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                if (_error != null) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    'Error: $_error',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 32),
                 ElevatedButton(
-                  onPressed: () async {
+                  onPressed: () => _run(() async {
                     await FlutterNativeBadge.setBadgeCount(_badgeCount + 1);
-                    _incrementCounter();
-                  },
+                    _badgeCount++;
+                  }),
                   child: const Text('Increment'),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 12),
                 ElevatedButton(
-                  onPressed: () async {
+                  onPressed: () => _run(() async {
+                    await FlutterNativeBadge.showRedDot();
+                  }),
+                  child: const Text('Show red dot'),
+                ),
+                const SizedBox(height: 12),
+                ElevatedButton(
+                  onPressed: () => _run(() async {
                     await FlutterNativeBadge.clearBadgeCount();
-                    _resetCounter();
-                  },
+                    _badgeCount = 0;
+                  }),
                   child: const Text('Reset'),
                 ),
               ],
@@ -88,17 +102,5 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
-  }
-
-  Future<void> _incrementCounter() async {
-    setState(() {
-      _badgeCount++;
-    });
-  }
-
-  Future<void> _resetCounter() async {
-    setState(() {
-      _badgeCount = 0;
-    });
   }
 }

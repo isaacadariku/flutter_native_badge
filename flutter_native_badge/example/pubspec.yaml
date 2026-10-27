@@ -1,9 +1,11 @@
 name: flutter_native_badge_example
 description: Demonstrates how to use the flutter_native_badge plugin.
 publish_to: "none"
+version: 1.0.0+1
 
 environment:
   sdk: ">=3.11.0 <4.0.0"
+  flutter: ">=3.44.0"
 
 dependencies:
   flutter:
@@ -11,8 +13,18 @@ dependencies:
   flutter_native_badge:
     path: ../
 
+dependency_overrides:
+  flutter_native_badge_android:
+    path: ../../flutter_native_badge_android
+  flutter_native_badge_foundation:
+    path: ../../flutter_native_badge_foundation
+  flutter_native_badge_platform_interface:
+    path: ../../flutter_native_badge_platform_interface
+
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  integration_test:
     sdk: flutter
   flutter_lints: ^5.0.0
 
