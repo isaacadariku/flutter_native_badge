@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
     s.license          = { :type => 'MIT', :file => '../LICENSE' }
     s.author           = { 'Isaac Adariku' => 'isaacadariku05@gmail.com' }
     s.source           = { :http => 'https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_foundation' }
-    s.source_files = 'Classes/**/*'
+    s.source_files = 'flutter_native_badge_foundation/Sources/flutter_native_badge_foundation/**/*.swift'
     s.osx.dependency 'FlutterMacOS'
     s.osx.deployment_target = '10.15'
 
