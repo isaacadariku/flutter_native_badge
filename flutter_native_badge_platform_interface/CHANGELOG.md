@@ -2,6 +2,7 @@
 
 - Fix the `repository` URL in pubspec.yaml
 - Clarify the API docs
+- Add an example showing how to implement a platform
 - Format the code with `dart format`
 
 ## 2.0.1 - 10th April 2026
