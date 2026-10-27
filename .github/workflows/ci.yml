@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FLUTTER_VERSION: "3.44.x"
+
+jobs:
+  analyze-and-test:
+    name: Analyze and test ${{ matrix.package }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - flutter_native_badge
+          - flutter_native_badge_platform_interface
+          - flutter_native_badge_foundation
+          - flutter_native_badge_android
+    defaults:
+      run:
+        working-directory: ${{ matrix.package }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Use the local packages
+        if: matrix.package == 'flutter_native_badge'
+        run: |
+          cat > pubspec_overrides.yaml <<'YAML'
+          dependency_overrides:
+            flutter_native_badge_android:
+              path: ../flutter_native_badge_android
+            flutter_native_badge_foundation:
+              path: ../flutter_native_badge_foundation
+            flutter_native_badge_platform_interface:
+              path: ../flutter_native_badge_platform_interface
+          YAML
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter pub publish --dry-run
+        if: matrix.package != 'flutter_native_badge'
+
+  android:
+    name: Android
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Build the example app
+        working-directory: flutter_native_badge/example
+        run: flutter build apk --debug
+      - name: Run Kotlin unit tests
+        working-directory: flutter_native_badge_android/example
+        run: |
+          flutter build apk --config-only
+          cd android && ./gradlew :flutter_native_badge_android:testDebugUnitTest
+
+  apple:
+    name: iOS and macOS (${{ matrix.dependency-manager }})
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        dependency-manager: [swiftpm, cocoapods]
+    defaults:
+      run:
+        working-directory: flutter_native_badge/example
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Disable Swift Package Manager
+        if: matrix.dependency-manager == 'cocoapods'
+        run: flutter config --no-enable-swift-package-manager
+      - name: Build for iOS
+        run: flutter build ios --simulator --debug
+      - name: Build and test on macOS
+        run: flutter test integration_test -d macos

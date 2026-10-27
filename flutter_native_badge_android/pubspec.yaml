@@ -1,0 +1,38 @@
+name: flutter_native_badge_android
+description: Android implementation of the flutter_native_badge plugin.
+  Sets the app icon badge count through launcher badge APIs or a silent notification.
+repository: https://github.com/isaacadariku/flutter_native_badge/tree/master/flutter_native_badge_android
+issue_tracker: https://github.com/isaacadariku/flutter_native_badge/issues
+version: 2.1.0
+
+topics:
+  - badge
+  - notification
+  - app-icon
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+  flutter: ">=3.44.0"
+
+flutter:
+  plugin:
+    implements: flutter_native_badge
+    platforms:
+      android:
+        package: io.flutter.plugins.flutter_native_badge_android
+        pluginClass: FlutterNativeBadgeAndroidPlugin
+        dartPluginClass: FlutterNativeBadgeAndroid
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_native_badge_platform_interface: ^2.0.1
+  meta: ^1.11.0
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+  pigeon: ^26.0.0
+
+scripts: derry.yaml

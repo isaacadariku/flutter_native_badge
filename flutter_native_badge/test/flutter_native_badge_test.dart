@@ -68,9 +68,9 @@ void main() {
       expect(FlutterNativeBadge.isSupported, isTrue);
     });
 
-    test('returns false on Android', () {
+    test('returns true on Android', () {
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
-      expect(FlutterNativeBadge.isSupported, isFalse);
+      expect(FlutterNativeBadge.isSupported, isTrue);
     });
 
     test('returns false on Linux', () {
@@ -81,7 +81,7 @@ void main() {
 
   group('on unsupported platform', () {
     setUp(() {
-      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      debugDefaultTargetPlatformOverride = TargetPlatform.linux;
     });
 
     test('setBadgeCount throws UnsupportedError', () {

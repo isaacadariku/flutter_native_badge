@@ -1,22 +1,16 @@
 PODS:
-  - flutter_native_badge_foundation (2.0.0):
-    - FlutterMacOS
   - FlutterMacOS (1.0.0)
 
 DEPENDENCIES:
-  - flutter_native_badge_foundation (from `Flutter/ephemeral/.symlinks/plugins/flutter_native_badge_foundation/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
 
 EXTERNAL SOURCES:
-  flutter_native_badge_foundation:
-    :path: Flutter/ephemeral/.symlinks/plugins/flutter_native_badge_foundation/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
 
 SPEC CHECKSUMS:
-  flutter_native_badge_foundation: 0c6f51acf4c13f845dee56a49d7326a13d8a7549
-  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
+  FlutterMacOS: c232990155153907050900a2e175c7773903ba4e
 
-PODFILE CHECKSUM: 0d3963a09fc94f580682bd88480486da345dc3f0
+PODFILE CHECKSUM: 505596d150d38022472859d890f709281982e016
 
 COCOAPODS: 1.16.2

@@ -10,16 +10,16 @@ Pod::Spec.new do |s|
     s.description      = <<-DESC
     Wraps the native APIs for iOS and macOS to set the badge count on the app icon.
                          DESC
-    s.homepage         = 'https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_foundation'
+    s.homepage         = 'https://github.com/isaacadariku/flutter_native_badge/tree/master/flutter_native_badge_foundation'
     s.license          = { :type => 'MIT', :file => '../LICENSE' }
     s.author           = { 'Isaac Adariku' => 'isaacadariku05@gmail.com' }
-    s.source           = { :http => 'https://github.com/isaacadariku/flutter_native_badge/tree/main/flutter_native_badge_foundation' }
-    s.source_files = 'Classes/**/*'
+    s.source           = { :http => 'https://github.com/isaacadariku/flutter_native_badge/tree/master/flutter_native_badge_foundation' }
+    s.source_files = 'flutter_native_badge_foundation/Sources/flutter_native_badge_foundation/**/*.swift'
     s.ios.dependency 'Flutter'
     s.ios.deployment_target = '13.0'
     
     s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
-    s.resource_bundles = {'flutter_native_badge_foundation_privacy' => ['Resources/PrivacyInfo.xcprivacy']}
+    s.resource_bundles = {'flutter_native_badge_foundation_privacy' => ['flutter_native_badge_foundation/Sources/flutter_native_badge_foundation/PrivacyInfo.xcprivacy']}
     s.xcconfig = {
       'LIBRARY_SEARCH_PATHS' => '$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)/ $(SDKROOT)/usr/lib/swift',
       'LD_RUNPATH_SEARCH_PATHS' => '/usr/lib/swift',

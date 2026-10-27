@@ -1,3 +1,11 @@
+## 2.1.0 - 27th October 2026
+
+- Add Swift Package Manager support for iOS and macOS (thanks @fwagner, #8)
+- Bump minimum Flutter version to 3.44.0, required for the `FlutterFramework` Swift package dependency
+- Move native sources to `<platform>/flutter_native_badge_foundation/Sources/flutter_native_badge_foundation/` (CocoaPods is still supported)
+- Fix `setBadgeCount(0)` showing a literal "0" on the macOS dock icon instead of clearing it
+- Migrate the example app to Swift Package Manager
+
 ## 2.0.1 - 10th April 2026
 
 - Add dartdoc to `FlutterNativeBadgeFoundation` class
