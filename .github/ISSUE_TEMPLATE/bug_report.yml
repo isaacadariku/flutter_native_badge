@@ -1,0 +1,49 @@
+name: Bug report
+description: Something isn't working as expected.
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: What did you expect to happen, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: The smallest code sample or steps that show the problem.
+      render: dart
+    validations:
+      required: true
+  - type: dropdown
+    id: platforms
+    attributes:
+      label: Platforms
+      multiple: true
+      options:
+        - Android
+        - iOS
+        - macOS
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device and OS version
+      description: For Android, include the manufacturer and launcher, for example "Samsung Galaxy S23, Android 16, One UI launcher".
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: flutter_native_badge version
+      placeholder: "2.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: flutter doctor -v
+      render: shell
